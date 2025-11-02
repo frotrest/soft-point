@@ -1,13 +1,6 @@
-const isProd = process.env.NETLIFY === 'true'
-const purge = isProd ? ['./src/**/*.html', './src/**/*.js'] : false
-
 module.exports = {
-  purge,
-  darkMode: false, // or 'media' or 'class'
+  content: ["./src/**/*.html", "./src/**/*.js"],
   theme: {
-    extend: {},
-  },
-  variants: {
     extend: {},
   },
   plugins: [],
