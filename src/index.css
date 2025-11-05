@@ -1,3 +1,22 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+
+.container {
+    width: 1240px;
+    margin: 0px auto;
+}
+
+input[type="range"] {
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background: linear-gradient(154.16deg, rgba(133.3171844482422, 253.93748474121094, 214.38975524902344, 1), rgba(78.04948425292969, 217.8125, 171.98855590820312, 1) 100%);
+    border: 3px solid white;
+    border-radius: 50%;
+    box-shadow: 0 0 6px #00f5c0;
+    cursor: pointer;
+}

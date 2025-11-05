@@ -15,3 +15,27 @@ Single-colored icons can be modified like so:
 }
 ========================================== */
 
+.icon-settings {
+  width: 35px;
+  height: 35px;
+}
+
+.icon-user {
+  width: 35px;
+  height: 35px;
+}
+
+.icon-secured {
+    width: 35px;
+    height: 35px;
+}
+
+.icon-code {
+  width: 35px;
+  height: 35px;
+}
+
+.icon-line {
+  width: 43px;
+  height: 23px;
+}
