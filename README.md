@@ -35,7 +35,7 @@ soft-point/
 │   ├── index.html        # Главная страница
 │   ├── css/              # Tailwind стили
 │   ├── js/               # Скрипты
-│   └── assets/           # Изображения и ресурсы
+│   └── img/           # Изображения и ресурсы
 ├── tailwind.config.js    # Конфигурация Tailwind
 ├── .postcssrc.json       # Настройки PostCSS
 ├── netlify.toml          # Конфигурация деплоя
