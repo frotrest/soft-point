@@ -25,8 +25,8 @@ module.exports = [
       globals: globals.node,
     },
     rules: {
-      'no-undef': 'off'
-    }
+      'no-undef': 'off',
+    },
   },
   prettierConfig,
 ];
