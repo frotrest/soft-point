@@ -1,46 +1,60 @@
-const range = document.getElementById('rangeInput');
-const tooltip = document.getElementById('priceValue');
-const priceText = tooltip.querySelector('.price-text');
+document.addEventListener('DOMContentLoaded', () => {
+  const range = document.getElementById('rangeInput');
+  const tooltip = document.getElementById('priceValue');
+  const priceText = tooltip?.querySelector('.price-text');
+  const container = range?.parentElement;
 
-function updateTooltip() {
-  const value = range.value;
-  priceText.textContent = `$${value}`;
+  function updateTooltip() {
+    if (!range || !tooltip || !priceText || !container) return;
 
-  const percent = (value - range.min) / (range.max - range.min);
-  const offset = percent * range.offsetWidth;
+    const value = range.value;
+    priceText.textContent = `$${value}`;
 
-  tooltip.style.left = `${offset}px`;
-}
+    const percent = (value - range.min) / (range.max - range.min);
 
-range.addEventListener('input', () => {
-  requestAnimationFrame(updateTooltip);
-});
+    const rangeRect = range.getBoundingClientRect();
+    const containerRect = container.getBoundingClientRect();
+    const tooltipWidth = tooltip.offsetWidth;
 
-window.addEventListener("DOMContentLoaded", updateTooltip);
+    const thumbWidth = parseFloat(getComputedStyle(range).getPropertyValue('--thumb-size')) || 20;
 
-const animatedElements = document.querySelectorAll("[data-animate]");
+    const offsetInsideRange = percent * (rangeRect.width - thumbWidth) + thumbWidth / 2;
 
-document.addEventListener("DOMContentLoaded", () => {
+    const centerX = rangeRect.left - containerRect.left + offsetInsideRange;
+
+    let left = centerX;
+
+    const minLeft = tooltipWidth / 2;
+    const maxLeft = containerRect.width - tooltipWidth / 2;
+    left = Math.max(minLeft, Math.min(maxLeft, left));
+
+    tooltip.style.left = `${left}px`;
+  }
+
+  range?.addEventListener('input', () => {
+    requestAnimationFrame(updateTooltip);
+  });
+
+  window.addEventListener('resize', updateTooltip);
+
+  updateTooltip();
   try {
-  const animatedElements = document.querySelectorAll("[data-animate]");
+    const animatedElements = document.querySelectorAll('[data-animate]');
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const animation = entry.target.dataset.animate;
+            entry.target.classList.add('animate__animated', `animate__${animation}`);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.1 }
+    );
 
-  const observer = new IntersectionObserver((entries, observer) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting && entry.target instanceof Element) {
-          const animation = entry.target.dataset.animate;
-          entry.target.classList.add("animate__animated", `animate__${animation}`);
-          observer.unobserve(entry.target);
-        }
-    })
-  }, {
-    root: null,
-    threshold: 0.1,
-  })
-
-  animatedElements.forEach(el => {
-    observer.observe(el);
-  })    
+    animatedElements.forEach((el) => observer.observe(el));
   } catch (error) {
-    console.log(`Ошибка с анимациями: ${error}`);
+    console.error('Ошибка с анимациями:', error);
   }
 });

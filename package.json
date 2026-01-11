@@ -2,19 +2,24 @@
   "scripts": {
     "dev": "parcel serve src/*.html",
     "build": "parcel build src/*.html",
-    "postinstall": "npx browserslist@latest --update-db"
+    "postinstall": "npx browserslist@latest --update-db",
+    "lint": "eslint .",
+    "format": "prettier --write ."
   },
   "engines": {
     "node": ">=18"
   },
   "devDependencies": {
+    "@eslint/js": "^9.39.2",
     "@tailwindcss/postcss": "^4.1.16",
+    "eslint": "^9.39.2",
+    "eslint-config-prettier": "^10.1.8",
+    "globals": "^17.0.0",
     "parcel": "^2.16.0",
     "postcss": "^8.5.6",
     "posthtml": "^0.16.5",
     "posthtml-include": "^1.6.0",
-    "sass": "^1.30.0",
+    "prettier": "^3.7.4",
     "tailwindcss": "^4.1.16"
-  },
-  "license": "MIT"
+  }
 }
