@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "scripts": {
     "dev": "parcel serve src/*.html",
     "build": "parcel build src/*.html",
