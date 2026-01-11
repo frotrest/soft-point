@@ -16,9 +16,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const containerRect = container.getBoundingClientRect();
     const tooltipWidth = tooltip.offsetWidth;
 
-    const thumbWidth = parseFloat(getComputedStyle(range).getPropertyValue('--thumb-size')) || 20;
+    const thumbWidth =
+      parseFloat(getComputedStyle(range).getPropertyValue('--thumb-size')) ||
+      20;
 
-    const offsetInsideRange = percent * (rangeRect.width - thumbWidth) + thumbWidth / 2;
+    const offsetInsideRange =
+      percent * (rangeRect.width - thumbWidth) + thumbWidth / 2;
 
     const centerX = rangeRect.left - containerRect.left + offsetInsideRange;
 
@@ -45,7 +48,10 @@ document.addEventListener('DOMContentLoaded', () => {
         entries.forEach((entry) => {
           if (entry.isIntersecting) {
             const animation = entry.target.dataset.animate;
-            entry.target.classList.add('animate__animated', `animate__${animation}`);
+            entry.target.classList.add(
+              'animate__animated',
+              `animate__${animation}`
+            );
             observer.unobserve(entry.target);
           }
         });
